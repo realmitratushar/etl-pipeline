@@ -1,7 +1,12 @@
+ETL Pipeline Implementation
+===========================
+
+ETL Pipeline Implementation using Apache Airflow,Astronomer,PostgreSQL and Open Meteo API. This project employs these technologies to implement an Extract-transform-Load Pipeline to extract weather data using Open Meteo API,Transform the data and then Load the data into a PostgreSQL database. Then using Apache Airflow, we implement DAGs so that the data can be extracted automatically on a regular basis(hourly,daily,weekly,etc.).
+
 Overview
 ========
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+Clone the repository using git clone function. Then Install the astro CLI using winget on windows,brew on mac or curl on linux. Then restart the IDE after successfull astro CLI installation. check if installed correctly or not by typing 'astro version'. Open docker desktop and keep it running. use the command 'astro dev start' to create the airflow. Airflow login page will open at localhost:8080/home. The default UserID and password are 'admin' and 'admin' respectively. 'weather_etl-pipeline' DAG will be shown there. click on it. click on Run button to start the DAG. Green Colour implies running successfully. The weather data will be stored in a postgreSQL database. to access it,download 'dbeaver; software. After installing it,open the software and Go to database>New database Connection>PostgreSQL and enter the details. The host will be localhost. ID and password will be both 'postgres' by default. Click on test Connection. After that click on Finish. Now to see the data from the database, Go to SQL Editor>Go to SQL Script. write the command 'select * from weather_data' and click ctrl+Enter. It will displayed all the data captured till now. Currently, the weather data is captured for 'Patna,bihar'. If you want to get the weather data for a different location,change the LATITUDE AND LONGITUDE in the etlweather.py file under dags folder.
 
 Project Contents
 ================
@@ -34,15 +39,3 @@ This command will spin up 4 Docker containers on your machine, each for a differ
 Note: Running 'astro dev start' will start your project with the Airflow Webserver exposed at port 8080 and Postgres exposed at port 5432. If you already have either of those ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
 
 3. Access the Airflow UI for your local Airflow project. To do so, go to http://localhost:8080/ and log in with 'admin' for both your Username and Password.
-
-You should also be able to access your Postgres Database at 'localhost:5432/postgres'.
-
-Deploy Your Project to Astronomer
-=================================
-
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
-
-Contact
-=======
-
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
